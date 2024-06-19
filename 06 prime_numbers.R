@@ -1,18 +1,19 @@
-prime_numbers <- function(n) {
-  if (n >= 2) {
-    x = seq(2, n)
-    prime_nums = c()
-    for (i in seq(2, n)) {
-      if (any(x == i)) {
-        prime_nums = c(prime_nums, i)
-        x = c(x[(x %% i) != 0], i)
-      }
+is_prime <- function(n) {
+  if (n <= 1) {
+    return(FALSE)
+  }
+  for (i in 2:sqrt(n)) {
+    if (n %% i == 0) {
+      return(FALSE)
     }
-    return(prime_nums)
   }
-  else 
-  {
-    stop("Input number should be at least 2.")
-  }
-} 
-prime_numbers(12)
+  return(TRUE)
+}
+
+# Example usage
+n <- 29
+if (is_prime(n)) {
+  cat(n, "is a prime number\n")
+} else {
+  cat(n, "is not a prime number\n")
+}
